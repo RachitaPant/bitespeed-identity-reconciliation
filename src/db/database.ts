@@ -1,4 +1,4 @@
-import postgres from 'postgres';
+import postgres from "postgres";
 
 let _sql: postgres.Sql | null = null;
 
@@ -13,11 +13,10 @@ export function getSql(): postgres.Sql {
   if (!_sql) {
     const databaseUrl = process.env.DATABASE_URL;
     if (!databaseUrl) {
-      throw new Error('DATABASE_URL environment variable is not set');
+      throw new Error("DATABASE_URL environment variable is not set");
     }
     _sql = postgres(databaseUrl, {
       max: 1,
-      ssl: 'require',
       idle_timeout: 20,
       connect_timeout: 10,
     });
@@ -60,5 +59,5 @@ export async function initDb(): Promise<void> {
       ON Contact("linkedId") WHERE "deletedAt" IS NULL
   `;
 
-  console.log('Database initialised successfully');
+  console.log("Database initialised successfully");
 }
