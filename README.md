@@ -11,13 +11,13 @@ A web service that identifies and reconciles customer identities across multiple
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Runtime | Node.js (v18+) |
-| Language | TypeScript |
-| Framework | Express.js |
-| Database | Neon Postgres (via postgres.js) |
-| Hosting | Vercel |
+| Layer     | Technology                      |
+| --------- | ------------------------------- |
+| Runtime   | Node.js (v18+)                  |
+| Language  | TypeScript                      |
+| Framework | Express.js                      |
+| Database  | Neon Postgres (via postgres.js) |
+| Hosting   | Vercel                          |
 
 ---
 
@@ -49,15 +49,18 @@ bitespeed-identity-reconciliation/
 ### `POST /identify`
 
 **Request Body (JSON):**
+
 ```json
 {
   "email": "user@example.com",
   "phoneNumber": "1234567890"
 }
 ```
+
 At least one of `email` or `phoneNumber` must be provided.
 
 **Response (200 OK):**
+
 ```json
 {
   "contact": {
@@ -70,6 +73,7 @@ At least one of `email` or `phoneNumber` must be provided.
 ```
 
 ### `GET /health`
+
 Returns `{ "status": "ok" }`.
 
 ---
@@ -105,6 +109,7 @@ vercel env add DATABASE_URL
 ```
 
 Or via the Vercel dashboard:
+
 1. Import your GitHub repo at [vercel.com/new](https://vercel.com/new).
 2. Under **Environment Variables**, add `DATABASE_URL` = your Neon connection string.
 3. Deploy.
@@ -135,17 +140,3 @@ npm run dev
 ```
 
 ---
-
-## Commit History
-
-| Commit | Description |
-|--------|-------------|
-| `chore: init project with ts + express` | package.json, tsconfig.json, .gitignore |
-| `feat: define Contact types and interfaces` | src/types/index.ts |
-| `feat: set up Neon Postgres connection and schema` | src/db/database.ts |
-| `feat: add async contact repository` | src/db/contactRepository.ts |
-| `feat: implement async identity reconciliation logic` | src/services/identityService.ts |
-| `feat: add POST /identify route handler` | src/routes/identify.ts |
-| `feat: wire up express app entry point` | src/index.ts |
-| `chore: swap db client to postgres.js` | package.json, database.ts, contactRepository.ts |
-| `docs: update README for Vercel + Neon setup` | README.md |
