@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: bitespeed-identity
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: DB_PATH
+        value: /tmp/data.db
